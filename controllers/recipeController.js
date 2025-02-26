@@ -2,6 +2,8 @@ const Recipe = require('../models/Recipe');
 
 exports.addRecipe = async (req, res) => {
     const reipe = await Recipe.create(req.body)
+    console.log(reipe);
+    
     res.json(reipe)
 };
 
@@ -9,6 +11,8 @@ exports.getAllRecipes = async (req, res) => {
     try {
 
       const recipe = await Recipe.find();
+      console.log(recipe);
+      
       res.json(recipe);
     } catch (error) {
       console.error('Failed to get recipes:', error);
