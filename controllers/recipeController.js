@@ -6,16 +6,13 @@ exports.addRecipe = async (req, res) => {
 };
 
 
+exports.getAllRecipes = async (req, res) => {
+    try {
 
-// exports.createRecipe = async (req, res) => {
-
-// };
-
-
-// exports.deleteRecipe = async (req, res) => {
-   
-// };
-
-// exports.updateRecipe = async (req, res) => {
-   
-// };
+      const recipe = await Recipe.find();
+      res.json(recipe);
+    } catch (error) {
+      console.error('Failed to get recipes:', error);
+      res.status(500).json({ message: 'Failed to get recipes' });
+    }
+  };
