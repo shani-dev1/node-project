@@ -5,6 +5,17 @@ exports.addRecipe = async (req, res) => {
     res.json(reipe)
 };
 
+exports.getAllRecipes = async (req, res) => {
+    try {
+
+      const recipe = await Recipe.find();
+      res.json(recipe);
+    } catch (error) {
+      console.error('Failed to get recipes:', error);
+      res.status(500).json({ message: 'Failed to get recipes' });
+    }
+  };
+
 
 // exports.createRecipe = async (req, res) => {
 
