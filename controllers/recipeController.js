@@ -2,6 +2,8 @@ const Recipe = require('../models/Recipe');
 
 exports.addRecipe = async (req, res) => {
     const reipe = await Recipe.create(req.body)
+    console.log(reipe);
+    
     res.json(reipe)
 };
 
