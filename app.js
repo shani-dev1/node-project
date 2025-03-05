@@ -4,8 +4,10 @@ const express = require("express")
 const cors = require("cors")
 const corsOptions = require("./config/corsOptions")
 const connectDB = require("./config/dbConnection")
+const recipeRoutes=require("./routs/recipeRoutes")
 
 const PORT = process.env.PORT || 7001
+
 const app = express()
 connectDB()
 
@@ -16,6 +18,7 @@ app.use(express.json())
 
 //routes
 
+app.use('/',recipeRoutes)
 
 
 mongoose.connection.once('open', () => {
