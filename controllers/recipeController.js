@@ -9,7 +9,6 @@ exports.addRecipe = async (req, res) => {
 
 exports.getAllRecipes = async (req, res) => {
     try {
-
       const recipe = await Recipe.find();
       console.log(recipe);
       
@@ -17,6 +16,21 @@ exports.getAllRecipes = async (req, res) => {
     } catch (error) {
       console.error('Failed to get recipes:', error);
       res.status(500).json({ message: 'Failed to get recipes' });
+    }
+  };
+
+  exports.deleteRecipe = async (req, res) => {
+    const  {recipeId}  = req.params;
+    console.log(recipeId);
+    try {
+      const deletedRecipe = await Recipe.findOneAndDelete({_id: recipeId });
+      if (!deletedRecipe) {
+        return res.status(404).json({ message: 'Recipe not found' });
+      }
+      res.json({ message: 'Recipe deleted successfully' });
+    } catch (error) {
+      console.error('Failed to delete Recipe:', error);
+      res.status(500).json({ message: 'Failed to delete Recipe' });
     }
   };
 
